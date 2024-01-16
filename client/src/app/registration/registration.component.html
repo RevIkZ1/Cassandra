@@ -1,0 +1,29 @@
+<section id="hero" class="hero-section">
+  <form (submit)="register()" [formGroup]="form">
+    <h2>Registracija</h2>
+    <label for="username">
+      Korisničko ime:
+      <input
+        type="text"
+        name="username"
+        [(ngModel)]="username"
+        id="username"
+        formControlName="username"
+      />
+    </label>
+    <br />
+    <label for="password">
+      Lozinka:
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        formControlName="password"
+        id="password"
+      />
+    </label>
+    <br />
+    <br />
+    <button type="submit" class="btn dugme">Registruj se</button>
+  </form>
+</section>

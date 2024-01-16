@@ -1,0 +1,13 @@
+<p>profile works!</p>
+<div *ngFor="let tim of tim$ | async" class="anime-item">
+  <div class="team-info">
+    <div class="info-block">{{ tim.imetima }}</div>
+    <div class="info-block">{{ tim.trener }}</div>
+    <div class="info-block">{{ tim.datumosnivanja }}</div>
+  </div>
+  <a
+    [routerLink]="['/igraci', tim.TimID]"
+    class="nav-link text-uppercase text-black fs-22 fw-6 ls-1"
+    >.
+  </a>
+</div>

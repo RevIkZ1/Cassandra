@@ -1,0 +1,78 @@
+<div class="team-list">
+  <div class="table-header">
+    <div class="title-block">Ime tima</div>
+    <div class="title-block">Trener</div>
+    <div class="title-block">Datum osnivanja</div>
+  </div>
+
+  <div *ngFor="let tim of tim$ | async" class="anime-item">
+    <div class="team-info">
+      <div class="info-block">{{ tim.imetima }}</div>
+      <div class="info-block">{{ tim.trener }}</div>
+      <div class="info-block">{{ tim.datumosnivanja }}</div>
+    </div>
+    <a
+      [routerLink]="['/igraci', tim.TimID]"
+      class="nav-link text-uppercase text-black fs-22 fw-6 ls-1"
+      >.
+    </a>
+    <button (click)="dodajKodUsera(tim.TimID)">Dodaj u omiljene</button>
+  </div>
+</div>
+<form (submit)="addDoktor()" [formGroup]="form">
+  <label for="trener" class="fs-20">trener:</label>
+  <textarea
+    type="text"
+    id="trener"
+    name="trener"
+    formControlName="trener"
+    required
+  ></textarea>
+
+  <label for="prezime1" class="fs-20">imetima:</label>
+  <textarea
+    type="text"
+    id="imetima"
+    name="imetima"
+    formControlName="imetima"
+    required
+  ></textarea>
+
+  <label for="datumosnivanja" class="fs-20">Datum rodjenja:</label>
+  <input
+    type="date"
+    id="datumosnivanja"
+    name="datumosnivanja"
+    formControlName="datumosnivanja"
+    required
+  />
+
+  <button type="submit">Dodaj tim</button>
+</form>
+<form (submit)="addMatch()" [formGroup]="matchForm">
+  <label for="domaci" class="fs-20">Domaci tim:</label>
+  <select id="domaci" name="domaci" formControlName="domaci" required>
+    <option *ngFor="let tim of tim$ | async" [value]="tim.TimID">
+      {{ tim.imetima }}
+    </option>
+  </select>
+
+  <label for="gostujuci" class="fs-20">Gostujuci tim:</label>
+  <select id="gostujuci" name="gostujuci" formControlName="gostujuci" required>
+    <option *ngFor="let tim of tim$ | async" [value]="tim.TimID">
+      {{ tim.imetima }}
+    </option>
+  </select>
+
+  <label for="datumUtakmice" class="fs-20">Datum utakmice:</label>
+  <input
+    type="datetime-local"
+    id="datumUtakmice"
+    name="datumUtakmice"
+    formControlName="datumUtakmice"
+    required
+  />
+
+  <button type="submit">Dodaj utakmicu</button>
+</form>
+<button (click)="prikazi()">Prikazi</button>

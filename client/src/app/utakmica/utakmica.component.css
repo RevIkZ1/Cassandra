@@ -1,0 +1,21 @@
+/* Stil za velika dugmad */
+.large-button {
+  display: block;
+  width: 200px; /* Podesite širinu prema potrebi */
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #3498db; /* Boja pozadine */
+  color: #ffffff; /* Boja teksta */
+  border: 1px solid #2980b9; /* Boja ivice */
+  border-radius: 5px; /* Zaobljeni rubovi */
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Stil za kontejner dugmadi */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

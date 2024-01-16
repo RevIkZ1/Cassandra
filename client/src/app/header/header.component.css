@@ -1,0 +1,223 @@
+.navbar {
+  padding: 1.8rem 0;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  display: flex;
+  width: 100%;
+  background-color: #ffffff; /* Prilagodite boju pozadine prema potrebi */
+  z-index: 100; /* Da se header prikaže iznad ostalih elemenata na stranici */
+  /* Dodatni stilizacijski kod prema vašim željama */
+  position: sticky;
+  top: 0;
+}
+
+.navbar-brand span {
+  margin-left: 2rem;
+}
+
+.brand-and-toggler {
+  width: 100%;
+}
+
+.navbar-content {
+  display: flex;
+  width: 100%;
+}
+.navbar-toggler-btn {
+  font-size: 24px; /* Prilagodite veličinu prema potrebi */
+  padding: 10px 15px; /* Prilagodite razmak prema potrebi */
+}
+
+.navbar-collapse {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  background-color: var(--black-color);
+  height: 100%;
+  width: 280px;
+  display: flex;
+  padding: 10rem 3rem 0 3rem;
+  transform: translateX(100%);
+  transition: var(--transition);
+}
+
+.show-navbar-collapse {
+  transform: translateX(0);
+}
+
+.nav-item {
+  margin-bottom: 1.4rem;
+}
+
+.nav-link {
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: var(--purple-color);
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-collapse {
+    position: relative;
+    height: auto;
+    padding: 0;
+    width: 100%;
+    background-color: transparent;
+    transform: translateX(0);
+    justify-content: flex-end;
+  }
+
+  .navbar-toggler-btn {
+    display: none;
+  }
+
+  .nav-item {
+    margin-bottom: 0;
+    margin-left: 2.8rem;
+  }
+
+  .nav-link {
+    color: var(--black-color);
+    font-size: 1.7rem;
+    font-weight: 500 !important;
+    opacity: 0.8;
+  }
+
+  .navbar-nav {
+    display: flex;
+  }
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 80px; /* Prilagodite ovu vrednost prema potrebi */
+  right: 20px; /* Prilagodite ovu vrednost prema potrebi */
+  background-color: #222;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.show-dropdown-menu {
+  display: block;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 8px 10px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-link:hover {
+  background-color: #333;
+}
+.navbar {
+  padding: 1.8rem 0;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.navbar-brand {
+  width: 90px;
+}
+.navbar-brand span {
+  margin-left: 2rem;
+}
+.brand-and-toggler {
+  width: 100%;
+}
+.navbar-content {
+  display: flex;
+  width: 100%;
+}
+.navbar-toggler-btn {
+  transition: var(--transition);
+  z-index: 11;
+}
+.navbar-collapse {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  background-color: var(--black-color);
+  height: 100%;
+
+  width: 280px;
+  display: flex;
+  padding: 10rem 3rem 0 3rem;
+  transform: translateX(100%);
+  transition: var(--transition);
+}
+.show-navbar-collapse {
+  transform: translateX(0);
+}
+.nav-item {
+  margin-bottom: 1.4rem;
+}
+.nav-link {
+  transition: var(--transition);
+}
+.nav-link:hover {
+  color: var(--purple-color);
+}
+@media screen and (min-width: 992px) {
+  .navbar-collapse {
+    position: relative;
+    height: auto;
+    padding: 0;
+    width: 100%;
+    background-color: transparent;
+    transform: translateX(0);
+    justify-content: flex-end;
+  }
+  .navbar-toggler-btn {
+    display: none;
+  }
+  .nav-item {
+    margin-bottom: 0;
+    margin-left: 2.8rem;
+  }
+  .nav-link {
+    color: var(--black-color);
+    font-size: 1.7rem;
+    font-weight: 500 !important;
+    opacity: 0.8;
+  }
+  .navbar-nav {
+    display: flex;
+  }
+}
+
+.navbar-toggler-btn {
+  /* ... postojeći stilovi dugmeta ... */
+  position: relative;
+}
+
+.navbar-toggler-line {
+  display: block;
+  width: 30px;
+  height: 3px;
+  margin: 4px auto;
+  background-color: var(--black-color); /* Defaultna boja crtica */
+  transition: background-color 0.3s ease;
+}
+
+.navbar-toggler-icon {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 3px auto;
+  background-color: var(--black-color);
+  transition: background-color 0.3s ease;
+}
+
+.navbar-toggler-btn.menu-open .navbar-toggler-icon {
+  background-color: white;
+}
+.navbar-toggler-btn.menu-open .navbar-toggler-line {
+  background-color: white; /* Nova boja crtica kada je meni otvoren */
+}

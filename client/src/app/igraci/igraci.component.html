@@ -1,0 +1,74 @@
+<form (submit)="addIgrac()" [formGroup]="form">
+  <label for="ime" class="fs-20">Ime:</label>
+  <textarea
+    type="text"
+    id="ime"
+    name="ime"
+    formControlName="ime"
+    required
+  ></textarea>
+
+  <label for="prezime" class="fs-20">Prezime:</label>
+  <textarea
+    type="text"
+    id="prezime"
+    name="prezime"
+    formControlName="prezime"
+    required
+  ></textarea>
+
+  <label for="datumrodjenja" class="fs-20">Datum rodjenja:</label>
+  <input
+    type="date"
+    id="datumrodjenja"
+    name="datumrodjenja"
+    formControlName="datumrodjenja"
+    required
+  />
+
+  <label for="pozicija" class="fs-20">Pozicija:</label>
+  <textarea
+    type="text"
+    id="pozicija"
+    name="pozicija"
+    formControlName="pozicija"
+    required
+  ></textarea>
+
+  <button type="submit">Dodaj pacijenta</button>
+</form>
+<div class="player-list">
+  <div class="table-header">
+    <div class="title-block">Ime</div>
+    <div class="title-block">Prezime</div>
+    <div class="title-block">Datum rodjenja</div>
+    <div class="title-block">Pozicija</div>
+    <div class="title-block">Odigranih meceva</div>
+    <div class="title-block">Postignuti golovi</div>
+    <div class="title-block">Asistencije</div>
+    <div class="title-block">Crveni kartoni</div>
+    <div class="title-block">Zuti kartoni</div>
+  </div>
+
+  <div *ngFor="let igraci of igraci$ | async" class="anime-item">
+    <div class="player-info">
+      <div class="info-block">{{ igraci.ime }}</div>
+      <div class="info-block">{{ igraci.prezime }}</div>
+      <div class="info-block">{{ igraci.datumrodjenja }}</div>
+      <div class="info-block">{{ igraci.pozicija }}</div>
+      <div class="info-block">{{ igraci.odigranihmeceva }}</div>
+      <div class="info-block">{{ igraci.postignutigolovi }}</div>
+      <div class="info-block">{{ igraci.asistencije }}</div>
+      <div class="info-block">{{ igraci.crvenikartoni }}</div>
+      <div class="info-block">{{ igraci.zutikartoni }}</div>
+    </div>
+  </div>
+  <div *ngFor="let stadioni of stadioni$ | async" class="anime-item">
+    <div class="title">{{ stadioni.grad }}</div>
+    <div class="title">{{ stadioni.imestadiona }}</div>
+    <div class="title">{{ stadioni.kapacitet }}</div>
+    <div class="image-container">
+      <img [src]="getImagePath(stadioni.imestadiona)" alt="Stadion Image" />
+    </div>
+  </div>
+</div>

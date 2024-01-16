@@ -1,0 +1,43 @@
+<table class="leagues-table">
+  <thead>
+    <tr>
+      <th>Domacin</th>
+      <th>Rezultat</th>
+      <th>Gost</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let utakmica of utakmice$ | async">
+      <td>
+        <a
+          [routerLink]="[
+            '/utakmica',
+            utakmica.UtakmicaID,
+            { GostID: utakmica.GostujuciTimID, DomacinID: utakmica.DomacinID }
+          ]"
+        >
+          {{ utakmica.Domacin?.imetima }}
+        </a>
+      </td>
+      <td>
+        {{ utakmica.GoloviDomacin?.length || 0 }}
+        :
+        {{ utakmica.GoloviGosti?.length || 0 }}
+      </td>
+      <td>
+        <a
+          [routerLink]="[
+            '/timovi',
+            utakmica.UtakmicaID,
+            { GostID: utakmica.GostujuciTimID, DomacinID: utakmica.DomacinID }
+          ]"
+        >
+          {{ utakmica.Gos?.imetima }}
+        </a>
+      </td>
+      <td>{{ utakmica.Datum }}</td>
+    </tr>
+  </tbody>
+</table>
+<button (click)="prikazi()">Prikazi</button>

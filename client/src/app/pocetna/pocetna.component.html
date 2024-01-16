@@ -1,0 +1,18 @@
+<div class="leagues-container">
+  <div *ngFor="let liga of lige$ | async; let i = index" class="anime-item">
+    <div class="anime-item-info with-border">
+      <p class="anime-item-info-item title">
+        {{ liga.imelige }}
+      </p>
+      <p class="anime-item-info-item genre">
+        Godina osnivanja: {{ liga.godinaosnivanja }}
+      </p>
+      <a
+        [routerLink]="['/timovi', liga.liga_id]"
+        class="nav-link text-uppercase text-black fs-22 fw-6 ls-1"
+      >
+        Detalji
+      </a>
+    </div>
+  </div>
+</div>

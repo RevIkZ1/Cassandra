@@ -1,0 +1,114 @@
+CREATE TABLE IF NOT EXISTS tim (
+  "TimID" UUID,
+  ImeTima TEXT,
+  DatumOsnivanja DATE,
+  Trener TEXT,
+  "LigaID" UUID,
+  PRIMARY KEY ("TimID" , "LigaID"),
+)
+WITH
+  bloom_filter_fp_chance=0.01
+  AND compaction={ 'class' : 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy' }
+  AND compression={ 'sstable_compression' : 'org.apache.cassandra.io.compress.LZ4Compressor' }
+  AND caching={'keys': 'ALL', 'rows_per_partition': 'NONE'};
+
+CREATE TABLE IF NOT EXISTS liga(
+  "liga_id" UUID PRIMARY KEY,
+  imelige TEXT,
+  drzava TEXT,
+  godinaosnivanja INT,
+)
+WITH
+  bloom_filter_fp_chance=0.01
+  AND compaction={ 'class' : 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy' }
+  AND compression={ 'sstable_compression' : 'org.apache.cassandra.io.compress.LZ4Compressor' }
+  AND caching={'keys': 'ALL', 'rows_per_partition': 'NONE'};
+
+CREATE TABLE IF NOT EXISTS stadion (
+  "StadionID" UUID,
+  ImeStadiona TEXT,
+  Kapacitet INT,
+  Grad TEXT,
+  "TimID" UUID,
+PRIMARY KEY ("StadionID" , "TimID")
+)
+WITH
+  bloom_filter_fp_chance=0.01
+  AND compaction={ 'class' : 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy' }
+  AND compression={ 'sstable_compression' : 'org.apache.cassandra.io.compress.LZ4Compressor' }
+  AND caching={'keys': 'ALL', 'rows_per_partition': 'NONE'};
+
+
+
+CREATE TABLE IF NOT EXISTS igrac(
+  "IgracID" UUID,
+  Ime TEXT,
+  Prezime TEXT,
+  DatumRodjenja DATE,
+  Pozicija TEXT,
+ OdigranihMeceva INT,
+  PostignutiGolovi INT,
+  Asistencije INT,
+  ZutiKartoni INT,
+  CrveniKartoni INT,
+  "TimID" UUID,
+  PRIMARY KEY ("IgracID" , "TimID")
+)
+WITH
+  bloom_filter_fp_chance=0.01
+  AND compaction={ 'class' : 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy' }
+  AND compression={ 'sstable_compression' : 'org.apache.cassandra.io.compress.LZ4Compressor' }
+  AND caching={'keys': 'ALL', 'rows_per_partition': 'NONE'};
+
+
+CREATE TABLE IF NOT EXISTS utakmica (
+  "UtakmicaID" UUID PRIMARY KEY,
+  "DomacinID" UUID,
+  "GostujuciTimID" UUID,
+  "StadionID" UUID,
+  "Datum" DATE,
+  "GoloviDomacin" LIST<TEXT>,         
+  "AsistencijeDomaci" LIST<TEXT>, 
+  "CrveniKartoniDomaci" LIST<TEXT>,  
+  "ZutiKartoniDomaci" LIST<TEXT>,    
+  "GoloviGosti" LIST<TEXT>,        
+  "AsistencijeGosti" LIST<TEXT>,     
+  "CrveniKartoniGosti" LIST<TEXT>,   
+  "ZutiKartoniGosti" LIST<TEXT>   
+)
+WITH
+  bloom_filter_fp_chance = 0.01
+  AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy'}
+  AND compression = {'sstable_compression': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+  AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'};
+
+
+CREATE TABLE IF NOT EXISTS "Tabela" (
+  "Tabela" UUID,
+  "TimID" UUID,
+  "LigaID" UUID,
+  Sezona INT,
+  Pozicija INT,
+  Poeni INT,
+  PRIMARY KEY ("Tabela", "TimID", "LigaID"),
+)WITH
+  bloom_filter_fp_chance=0.01
+  AND compaction={ 'class' : 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy' }
+  AND compression={ 'sstable_compression' : 'org.apache.cassandra.io.compress.LZ4Compressor' }
+  AND caching={'keys': 'ALL', 'rows_per_partition': 'NONE'};
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS user(
+  "UserID" UUID PRIMARY KEY,
+  username TEXT,
+  password TEXT,   
+  listatimova LIST<TEXT>,
+)
+WITH
+  bloom_filter_fp_chance = 0.01
+  AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy'}
+  AND compression = {'sstable_compression': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+  AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'};

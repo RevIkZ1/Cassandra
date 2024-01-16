@@ -1,0 +1,82 @@
+<p>utakmica works!</p>
+
+<form [formGroup]="utakmicaForm">
+  <label for="domaci" class="fs-20">Domaći tim:</label>
+  <select
+    id="domaci"
+    name="domaci"
+    formControlName="domaci"
+    required
+    (change)="logSelectedPlayerId()"
+  >
+    <option *ngFor="let igraci of igraci$ | async" [value]="igraci.IgracID">
+      {{ igraci.ime }}
+    </option>
+  </select>
+
+  <button (click)="switchTeamInfo()">
+    Prikazi {{ isShowingGosti ? "domacine" : "goste" }}
+  </button>
+
+  <!-- Dugmad za postavljanje vrednosti parametara -->
+  <div class="button-container">
+    <button
+      *ngIf="!isShowingGosti"
+      class="large-button"
+      (click)="setSelectedPlayerId('DomacinGo')"
+    >
+      Postavi DomacinGo
+    </button>
+    <button
+      *ngIf="isShowingGosti"
+      class="large-button"
+      (click)="setSelectedPlayerId('GostGo')"
+    >
+      Postavi GostGo
+    </button>
+    <button
+      *ngIf="!isShowingGosti"
+      class="large-button"
+      (click)="setSelectedPlayerId('DomacinCrveni')"
+    >
+      Postavi DomacinCrveni
+    </button>
+    <button
+      *ngIf="isShowingGosti"
+      class="large-button"
+      (click)="setSelectedPlayerId('GostCrveni')"
+    >
+      Postavi GostCrveni
+    </button>
+
+    <!-- Dodatna dugmad koja će biti vidljiva samo kad su gosti -->
+    <button
+      *ngIf="!isShowingGosti"
+      class="large-button"
+      (click)="setSelectedPlayerId('DomacinZuti')"
+    >
+      Postavi DomacinZuti
+    </button>
+    <button
+      *ngIf="isShowingGosti"
+      class="large-button"
+      (click)="setSelectedPlayerId('GostZuti')"
+    >
+      Postavi GostZuti
+    </button>
+    <button
+      *ngIf="!isShowingGosti"
+      class="large-button"
+      (click)="setSelectedPlayerId('AsistencijaDomacin')"
+    >
+      Postavi AsistencijaDomacin
+    </button>
+    <button
+      *ngIf="isShowingGosti"
+      class="large-button"
+      (click)="setSelectedPlayerId('AsistencijaGost')"
+    >
+      Postavi AsistencijaGost
+    </button>
+  </div>
+</form>

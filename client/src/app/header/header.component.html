@@ -1,0 +1,82 @@
+<nav class="navbar" id="navbar">
+  <div class="container navbar-content flex">
+    <div class="brand-and-toggler flex flex-sb">
+      <a routerLink="/" class="navbar-brand flex">
+        <span class="text-uppercase fw-7 fs-24 ls-1">ElScore</span>
+      </a>
+      <button
+        type="button"
+        class="navbar-toggler-btn"
+        [ngClass]="{ 'menu-open': toggleMenu }"
+        (click)="handleNavBar()"
+      >
+        <span class="navbar-toggler-line"></span>
+        <span class="navbar-toggler-line"></span>
+        <span class="navbar-toggler-line"></span>
+      </button>
+    </div>
+    <div
+      [ngClass]="
+        toggleMenu ? 'navbar-collapse show-navbar-collapse' : 'navbar-collapse'
+      "
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a
+            routerLink="/"
+            class="nav-link text-uppercase text-white fs-22 fw-6 ls-1"
+          >
+            Pocetna
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/utakmice"
+            class="nav-link text-uppercase text-white fs-22 fw-6 ls-1"
+          >
+            Utakmice
+          </a>
+        </li>
+        <!-- Stilizovani link za Logout ako je user logovan -->
+        <ng-container *ngIf="authenticated; else loginRegisterLinks">
+          <li class="nav-item">
+            <a
+              [routerLink]="['/profile', user1.username]"
+              class="nav-link text-uppercase text-white fs-22 fw-6 ls-1"
+            >
+              Profil
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              routerLink="/"
+              class="nav-link text-uppercase text-white fs-22 fw-6 ls-1"
+              (click)="logout()"
+            >
+              Odjavi se
+            </a>
+          </li>
+        </ng-container>
+        <ng-template #loginRegisterLinks>
+          <li class="nav-item">
+            <a
+              routerLink="/login"
+              class="nav-link text-uppercase text-white fs-22 fw-6 ls-1"
+            >
+              Prijavi se
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              routerLink="/register"
+              class="nav-link text-uppercase text-white fs-22 fw-6 ls-1"
+            >
+              Registruj se
+            </a>
+          </li>
+        </ng-template>
+        <!-- ... -->
+      </ul>
+    </div>
+  </div>
+</nav>
