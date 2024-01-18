@@ -80,7 +80,7 @@ export class UtakmicaEffects {
             ),
             catchError((error) =>
               of(
-                UtakmicaActions.postUtakmicaFailure({
+                UtakmicaActions.putUtakmicaFailure({
                   error: error.message,
                 })
               )

@@ -32,5 +32,22 @@ export const reducers2 = createReducer(
     ...state,
     isLoading: false,
     error: action.error,
+  })),
+  on(LigaActions.postLiga, (state) => ({
+    ...state,
+    isLoading: true,
+    error: null,
+  })),
+  on(LigaActions.postLigaSuccess, (state, action) => {
+    return {
+      ...state,
+      ...adapter.upsertOne(action.liga, state),
+      isLoading: false,
+    };
+  }),
+  on(LigaActions.postLigaFailure, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: action.error,
   }))
 );

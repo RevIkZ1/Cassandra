@@ -25,27 +25,27 @@ export class StadionEffects {
     )
   );
 
-  //   postDoktor$ = createEffect(() =>
-  //     this.actions$.pipe(
-  //       ofType(IgracActions.postIgrac),
-  //       switchMap((action) => {
-  //         return this.igracService.p(action.tim, action.id).pipe(
-  //           map(() =>
-  //           IgracActions.postTImSuccess({
-  //               tim: action.tim,
-  //             })
-  //           ),
-  //           catchError((error) =>
-  //             of(
-  //                 IgracActions.postTImFailure({
-  //                 error: error.message,
-  //               })
-  //             )
-  //           )
-  //         );
-  //       })
-  //     )
-  //   );
+  postStadion$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(StadionActions.postStadion),
+      switchMap((action) => {
+        return this.stadionService.postStadion(action.stadion, action.id).pipe(
+          map(() =>
+            StadionActions.postStadionSuccess({
+              stadion: action.stadion,
+            })
+          ),
+          catchError((error) =>
+            of(
+              StadionActions.postStadionFailure({
+                error: error.message,
+              })
+            )
+          )
+        );
+      })
+    )
+  );
 
   constructor(
     private actions$: Actions,

@@ -30,7 +30,7 @@ export const browserRolead = createAction(
   props<{ isLoading: boolean; isLoggedin: boolean }>()
 );
 export const addTimToUser = createAction(
-  '[TIm page] Post TIm',
+  '[TIm page] Post TIm to User',
   props<{
     userId: string;
     id: string;
@@ -38,13 +38,13 @@ export const addTimToUser = createAction(
 );
 
 export const addTimToUserSuccess = createAction(
-  '[TIm page] Post TIm Success',
+  '[Tim page] Post Tim Success to User',
   props<{
     user: UserModel;
   }>()
 );
 
 export const addTimToUserFailure = createAction(
-  '[TIm  page] Post TIm Failure',
+  '[Tim  page] Post Tim Failure to User',
   props<{ error: string }>()
 );

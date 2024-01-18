@@ -62,22 +62,15 @@ export class TimEffects {
   postDoktor$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TimActions.postTIm),
-      switchMap((action) => {
-        return this.timService.postTim(action.tim, action.id).pipe(
+      switchMap((action) =>
+        this.timService.postTim(action.tim, action.id).pipe(
           map(() =>
             TimActions.postTImSuccess({
               tim: action.tim,
             })
-          ),
-          catchError((error) =>
-            of(
-              TimActions.postTImFailure({
-                error: error.message,
-              })
-            )
           )
-        );
-      })
+        )
+      )
     )
   );
 

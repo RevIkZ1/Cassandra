@@ -16,7 +16,9 @@
       class="nav-link text-uppercase text-black fs-22 fw-6 ls-1"
       >.
     </a>
-    <button (click)="dodajKodUsera(tim.TimID)">Dodaj u omiljene</button>
+    <button type="button" (click)="dodajKodUsera(tim.TimID)">
+      Dodaj u omiljene
+    </button>
   </div>
 </div>
 <form (submit)="addDoktor()" [formGroup]="form">
@@ -75,4 +77,3 @@
 
   <button type="submit">Dodaj utakmicu</button>
 </form>
-<button (click)="prikazi()">Prikazi</button>

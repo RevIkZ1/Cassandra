@@ -25,7 +25,7 @@ export class IgracEffects {
     )
   );
 
-  postDoktor$ = createEffect(() =>
+  postIgrac$ = createEffect(() =>
     this.actions$.pipe(
       ofType(IgracActions.postIgrac),
       switchMap((action) => {
@@ -38,6 +38,23 @@ export class IgracEffects {
           catchError((error) =>
             of(
               IgracActions.postIgracFailure({
+                error: error.message,
+              })
+            )
+          )
+        );
+      })
+    )
+  );
+  removeIgrac$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(IgracActions.deleteIgrac),
+      mergeMap((action) => {
+        return this.igracService.deleteIgrac(action.id).pipe(
+          map((id) => IgracActions.deleteIgracSuccess({ id: action.id })),
+          catchError((error) =>
+            of(
+              IgracActions.deleteIgracFailure({
                 error: error.message,
               })
             )

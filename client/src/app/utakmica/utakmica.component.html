@@ -20,63 +20,67 @@
 
   <!-- Dugmad za postavljanje vrednosti parametara -->
   <div class="button-container">
-    <button
-      *ngIf="!isShowingGosti"
-      class="large-button"
-      (click)="setSelectedPlayerId('DomacinGo')"
+    <a
+      routerLink="/utakmice"
+      class="nav-link text-uppercase text-white fs-22 fw-6 ls-1"
     >
-      Postavi DomacinGo
-    </button>
-    <button
-      *ngIf="isShowingGosti"
-      class="large-button"
-      (click)="setSelectedPlayerId('GostGo')"
-    >
-      Postavi GostGo
-    </button>
-    <button
-      *ngIf="!isShowingGosti"
-      class="large-button"
-      (click)="setSelectedPlayerId('DomacinCrveni')"
-    >
-      Postavi DomacinCrveni
-    </button>
-    <button
-      *ngIf="isShowingGosti"
-      class="large-button"
-      (click)="setSelectedPlayerId('GostCrveni')"
-    >
-      Postavi GostCrveni
-    </button>
+      <button
+        *ngIf="!isShowingGosti"
+        class="large-button"
+        (click)="setSelectedPlayerId('DomacinGo')"
+      >
+        Postavi DomacinGo
+      </button>
+      <button
+        *ngIf="isShowingGosti"
+        class="large-button"
+        (click)="setSelectedPlayerId('GostGo')"
+      >
+        Postavi GostGo
+      </button>
+      <button
+        *ngIf="!isShowingGosti"
+        class="large-button"
+        (click)="setSelectedPlayerId('DomacinCrveni')"
+      >
+        Postavi DomacinCrveni
+      </button>
+      <button
+        *ngIf="isShowingGosti"
+        class="large-button"
+        (click)="setSelectedPlayerId('GostCrveni')"
+      >
+        Postavi GostCrveni
+      </button>
 
-    <!-- Dodatna dugmad koja će biti vidljiva samo kad su gosti -->
-    <button
-      *ngIf="!isShowingGosti"
-      class="large-button"
-      (click)="setSelectedPlayerId('DomacinZuti')"
-    >
-      Postavi DomacinZuti
-    </button>
-    <button
-      *ngIf="isShowingGosti"
-      class="large-button"
-      (click)="setSelectedPlayerId('GostZuti')"
-    >
-      Postavi GostZuti
-    </button>
-    <button
-      *ngIf="!isShowingGosti"
-      class="large-button"
-      (click)="setSelectedPlayerId('AsistencijaDomacin')"
-    >
-      Postavi AsistencijaDomacin
-    </button>
-    <button
-      *ngIf="isShowingGosti"
-      class="large-button"
-      (click)="setSelectedPlayerId('AsistencijaGost')"
-    >
-      Postavi AsistencijaGost
-    </button>
+      <button
+        *ngIf="!isShowingGosti"
+        class="large-button"
+        (click)="setSelectedPlayerId('DomacinZuti')"
+      >
+        Postavi DomacinZuti
+      </button>
+      <button
+        *ngIf="isShowingGosti"
+        class="large-button"
+        (click)="setSelectedPlayerId('GostZuti')"
+      >
+        Postavi GostZuti
+      </button>
+      <button
+        *ngIf="!isShowingGosti"
+        class="large-button"
+        (click)="setSelectedPlayerId('AsistencijaDomacin')"
+      >
+        Postavi AsistencijaDomacin
+      </button>
+      <button
+        *ngIf="isShowingGosti"
+        class="large-button"
+        (click)="setSelectedPlayerId('AsistencijaGost')"
+      >
+        Postavi AsistencijaGost
+      </button>
+    </a>
   </div>
 </form>

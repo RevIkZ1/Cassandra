@@ -48,4 +48,13 @@ export class IgracService {
       }
     );
   }
+  deleteIgrac(id: string) {
+    console.log(id);
+    return this.http.delete<string>(
+      `http://localhost:3000/Igrac/deleteIgracById/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }

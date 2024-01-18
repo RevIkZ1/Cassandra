@@ -11,25 +11,25 @@ export const getUtakmiceFailure = createAction(
   props<{ error: string }>()
 );
 export const postUtakmica = createAction(
-  '[Igrac page] Post Igrac',
+  '[Utakmica page] Utakmica Igrac',
   props<{
     utakmica: UtakmicaModel;
   }>()
 );
 
 export const postUtakmicaSuccess = createAction(
-  '[Igrac page] Post Igrac Success',
+  '[Utakmica page] Post Utakmica Success',
   props<{
     utakmica: UtakmicaModel;
   }>()
 );
 
 export const postUtakmicaFailure = createAction(
-  '[Igrac  page] Post Igrac Failure',
+  '[Utakmica  page] Post Utakmica Failure',
   props<{ error: string }>()
 );
 export const putUtakmica = createAction(
-  '[Igrac page] Post Igrac',
+  '[Utakmica page] Post Utakmica',
   props<{
     id: string;
     DomacinGo: string;
@@ -44,7 +44,7 @@ export const putUtakmica = createAction(
 );
 
 export const putUtakmicaSuccess = createAction(
-  '[Igrac page] Post Igrac Success',
+  '[Utakmica page] Post Utakmica Success',
   props<{
     id: string;
     DomacinGo: string;
@@ -59,6 +59,6 @@ export const putUtakmicaSuccess = createAction(
 );
 
 export const putUtakmicaFailure = createAction(
-  '[Igrac  page] Post Igrac Failure',
+  '[Utakmica  page] Post Utakmica Failure',
   props<{ error: string }>()
 );

@@ -36,9 +36,10 @@ export class IgraciComponent implements OnInit {
   igraci$?: Observable<Igrac[]>;
   stadioni$?: Observable<Stadion[]>;
   form!: FormGroup;
+  form1!: FormGroup;
+
   constructor(
     private store: Store<IgracState>,
-    private store1: Store<TimState>,
     private store2: Store<StadionState>,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -57,14 +58,24 @@ export class IgraciComponent implements OnInit {
       datumrodjenja: new FormControl('', Validators.required),
       pozicija: new FormControl('', Validators.required),
     });
+    this.form1 = this.formBuilder.group({
+      grad: new FormControl('', Validators.required),
+      imestadiona: new FormControl('', Validators.required),
+      kapacitet: new FormControl('', Validators.required),
+    });
     this.route.params.subscribe(async (params) => {
       const id = params['id'];
-      this.store1.dispatch(IgracActions.getIgrac({ id }));
+      this.store.dispatch(IgracActions.getIgrac({ id }));
       this.store2.dispatch(StadionActions.getStadion({ id }));
     });
   }
-  getImagePath(imeStadiona: string): string {
-    return `assets/images/${imeStadiona}.jpg`;
+  getImagePath(imeStadiona: string | undefined): string {
+    // Provera da li postoji vrednost pre pristupa
+    if (imeStadiona) {
+      return `assets/images/${imeStadiona}.jpg`; // Zamislite da se slike nalaze u assets/images folderu
+    } else {
+      return 'putanja/do/slike/po/defaultu.jpg'; // Možete koristiti neku defaultnu sliku
+    }
   }
   addIgrac() {
     this.route.params.subscribe(async (params) => {
@@ -92,11 +103,44 @@ export class IgraciComponent implements OnInit {
 
           this.form.reset();
         } catch (error) {
-          console.error('Error while posting Doktor:', error);
+          console.error('Error while posting Igrac:', error);
         }
       } else {
         alert('Molimo Vas popunite sva polja.');
       }
     });
+  }
+
+  addStadion() {
+    this.route.params.subscribe(async (params) => {
+      if (this.form1.valid) {
+        const info = this.form1.value;
+        console.log(info);
+        const id = params['id']; // Assuming you get the ID from route params
+        try {
+          await this.store.dispatch(
+            StadionActions.postStadion({
+              stadion: {
+                grad: info.grad,
+                imestadiona: info.imestadiona,
+                kapacitet: info.kapacitet,
+              },
+              id: id,
+            })
+          );
+
+          this.form1.reset();
+        } catch (error) {
+          console.error('Error while posting Igrac:', error);
+        }
+      } else {
+        alert('Molimo Vas popunite sva polja.');
+      }
+    });
+  }
+  delete(id: string) {
+    if (confirm('Da li zaista zelite da obrisete pregled')) {
+      this.store.dispatch(IgracActions.deleteIgrac({ id }));
+    }
   }
 }

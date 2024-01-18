@@ -8,7 +8,7 @@ import { switchMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class LigaEffects {
-  getAnimeStudija$ = createEffect(() =>
+  getLiga$ = createEffect(() =>
     this.actions$.pipe(
       ofType(LigaActions.getLige),
       mergeMap(() => {
@@ -19,6 +19,27 @@ export class LigaEffects {
           map((mesta) => LigaActions.getLigeSuccess({ mesta })),
           catchError((error) =>
             of(LigaActions.getLigeFailure({ error: error.message }))
+          )
+        );
+      })
+    )
+  );
+  postLiga$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(LigaActions.postLiga),
+      switchMap((action) => {
+        return this.ligaService.postliga(action.liga).pipe(
+          map(() =>
+            LigaActions.postLigaSuccess({
+              liga: action.liga,
+            })
+          ),
+          catchError((error) =>
+            of(
+              LigaActions.postLigaFailure({
+                error: error.message,
+              })
+            )
           )
         );
       })

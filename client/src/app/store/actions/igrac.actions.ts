@@ -31,3 +31,15 @@ export const postIgracFailure = createAction(
   '[Igrac  page] Post Igrac Failure',
   props<{ error: string }>()
 );
+export const deleteIgrac = createAction(
+  '[Igrac Page] Delete Igrac',
+  props<{ id: string }>()
+);
+export const deleteIgracSuccess = createAction(
+  '[Igrac Page] Delete Igrac Success',
+  props<{ id: string }>()
+);
+export const deleteIgracFailure = createAction(
+  '[Igrac Page] Delete Igrac Failure',
+  props<{ error: string }>()
+);

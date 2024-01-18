@@ -152,6 +152,8 @@ export class TimoviComponent implements OnInit {
     console.log(this.user.id);
     if (this.user.id !== undefined) {
       const existingTeams = this.user.listatimova || [];
+      console.log(id, 'GHAAAAAAAAAAAAAAAAAAAAAAA');
+      console.log(this.user.id, 'GAAAAAAAAAAAAAAAAAAAAAAAA');
 
       if (existingTeams.includes(id as string)) {
         window.alert('Tim već dodat!');

@@ -43,11 +43,37 @@ export class PocetnaComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      datumosnivanja: new FormControl('', Validators.required),
-      imetima: new FormControl('', Validators.required),
-      trener: new FormControl('', Validators.required),
+      drzava: new FormControl('', Validators.required),
+      godinaosnivanja: new FormControl('', Validators.required),
+      imelige: new FormControl('', Validators.required),
     });
     this.store.dispatch(LigaActions.getLige());
+  }
+
+  addLiga() {
+    this.route.params.subscribe(async (params) => {
+      if (this.form.valid) {
+        const info = this.form.value;
+        console.log(info);
+        try {
+          await this.store.dispatch(
+            LigaActions.postLiga({
+              liga: {
+                drzava: info.drzava,
+                godinaosnivanja: info.godinaosnivanja,
+                imelige: info.imelige,
+                liga_id: '',
+              },
+            })
+          );
+          this.form.reset();
+        } catch (error) {
+          console.error('Error while posting Liga:', error);
+        }
+      } else {
+        alert('Molimo Vas popunite sva polja.');
+      }
+    });
   }
   prikazi() {
     this.lige$?.subscribe((res) => {

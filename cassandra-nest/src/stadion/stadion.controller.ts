@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Put,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { StadionService } from './stadion.service';
 import { Stadion } from './stadion.model';
 
@@ -8,16 +16,35 @@ export class StadionController {
 
   @Post('DodajStadion')
   async createStadion(@Body() stadion: Stadion) {
-    return this.stadionService.createStadion(stadion);
+    try {
+      return await this.stadionService.createStadion(stadion);
+    } catch (error) {
+      console.error(error);
+      throw new InternalServerErrorException('Error creating stadium');
+    }
   }
+
   @Get('VratiStadion')
   async getStadion() {
-    return this.stadionService.getStadion();
+    try {
+      return await this.stadionService.getStadion();
+    } catch (error) {
+      console.error(error);
+      throw new InternalServerErrorException('Error retrieving stadiums');
+    }
   }
+
   @Get('VratiStadion/:id')
   async getStadionByTim(@Param('id') id: string) {
-    const timoviZaLigu = await this.stadionService.getStadionByTim(id);
-    console.log(timoviZaLigu);
-    return timoviZaLigu;
+    try {
+      const timoviZaLigu = await this.stadionService.getStadionByTim(id);
+      console.log(timoviZaLigu);
+      return timoviZaLigu;
+    } catch (error) {
+      console.error(error);
+      throw new InternalServerErrorException(
+        'Error retrieving stadium by team',
+      );
+    }
   }
 }

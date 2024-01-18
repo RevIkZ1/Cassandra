@@ -1,3 +1,33 @@
+<form (submit)="addLiga()" [formGroup]="form">
+  <label for="drzava" class="fs-20">drzava:</label>
+  <textarea
+    type="text"
+    id="drzava"
+    name="drzava"
+    formControlName="drzava"
+    required
+  ></textarea>
+
+  <label for="godinaosnivanja" class="fs-20">godinaosnivanja:</label>
+  <input
+    type="number"
+    id="godinaosnivanja"
+    name="godinaosnivanja"
+    formControlName="godinaosnivanja"
+    required
+  />
+
+  <label for="imelige" class="fs-20">imelige:</label>
+  <textarea
+    type="text"
+    id="imelige"
+    name="imelige"
+    formControlName="imelige"
+    required
+  ></textarea>
+
+  <button type="submit">Dodaj ligu</button>
+</form>
 <div class="leagues-container">
   <div *ngFor="let liga of lige$ | async; let i = index" class="anime-item">
     <div class="anime-item-info with-border">

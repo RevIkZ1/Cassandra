@@ -48,5 +48,16 @@ export const reducer3 = createReducer(
     ...state,
     isLoading: false,
     error: action.error,
+  })),
+  on(IgracActions.deleteIgrac, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(IgracActions.deleteIgracSuccess, (state, action) => {
+    return adapter.removeOne(action.id, { ...state, isLoading: false });
+  }),
+  on(IgracActions.deleteIgracFailure, (state, action) => ({
+    ...state,
+    error: action.error,
   }))
 );

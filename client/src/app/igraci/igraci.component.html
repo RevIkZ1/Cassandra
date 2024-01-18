@@ -35,7 +35,37 @@
     required
   ></textarea>
 
-  <button type="submit">Dodaj pacijenta</button>
+  <button type="submit">Dodaj igraca</button>
+</form>
+<form (submit)="addStadion()" [formGroup]="form1">
+  <label for="grad" class="fs-20">Grad:</label>
+  <textarea
+    type="text"
+    id="grad"
+    name="grad"
+    formControlName="grad"
+    required
+  ></textarea>
+
+  <label for="imestadiona" class="fs-20">Ime stadiona:</label>
+  <textarea
+    type="text"
+    id="imestadiona"
+    name="imestadiona"
+    formControlName="imestadiona"
+    required
+  ></textarea>
+
+  <label for="kapacitet" class="fs-20">Kapacitet:</label>
+  <input
+    type="number"
+    id="kapacitet"
+    name="kapacitet"
+    formControlName="kapacitet"
+    required
+  />
+
+  <button type="submit">Dodaj stadion</button>
 </form>
 <div class="player-list">
   <div class="table-header">
@@ -61,6 +91,7 @@
       <div class="info-block">{{ igraci.asistencije }}</div>
       <div class="info-block">{{ igraci.crvenikartoni }}</div>
       <div class="info-block">{{ igraci.zutikartoni }}</div>
+      <button (click)="delete(igraci.IgracID!)">Obrisi igraca</button>
     </div>
   </div>
   <div *ngFor="let stadioni of stadioni$ | async" class="anime-item">

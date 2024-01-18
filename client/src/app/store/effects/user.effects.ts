@@ -4,7 +4,16 @@ import { createAction } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as userActions from '../actions/user.actions';
-import { catchError, defer, map, mergeMap, of, switchMap, tap } from 'rxjs';
+import {
+  EMPTY,
+  catchError,
+  defer,
+  map,
+  mergeMap,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { Router } from '@angular/router';
 import { UserModel } from '../types/user.module';
 import { UserService } from 'src/app/services/user.service';
@@ -79,12 +88,16 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(userActions.addTimToUser),
       switchMap((action) => {
-        return this.userService.postTim(action.userId, action.id).pipe(
-          map((user) => userActions.addTimToUserSuccess({ user })),
-          catchError((error) =>
-            of(userActions.addTimToUserFailure({ error: error.message }))
-          )
-        );
+        if (action.userId && action.id) {
+          return this.userService.postTim(action.userId, action.id).pipe(
+            map((user) => userActions.addTimToUserSuccess({ user })),
+            catchError((error) =>
+              of(userActions.addTimToUserFailure({ error: error.message }))
+            )
+          );
+        } else {
+          return EMPTY;
+        }
       })
     )
   );

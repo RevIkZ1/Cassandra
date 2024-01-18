@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { StadionModel } from '../store/types/stadion.module';
+import { Stadion, StadionModel } from '../store/types/stadion.module';
 
 @Injectable({
   providedIn: 'root',
@@ -22,5 +22,24 @@ export class StadionService {
           console.log('Rezultati from getAllLige:', rezultati);
         })
       );
+  }
+  postStadion(stadion: StadionModel, id: string): Observable<Stadion[]> {
+    console.log(id);
+
+    const stadionData = {
+      StadionID: '',
+      TimID: id,
+      grad: stadion.grad,
+      imestadiona: stadion.imestadiona,
+      kapacitet: stadion.kapacitet,
+    };
+    console.log(stadionData);
+    return this.http.post<Stadion[]>(
+      `http://localhost:3000/Stadion/DodajStadion`,
+      stadionData,
+      {
+        withCredentials: true,
+      }
+    );
   }
 }

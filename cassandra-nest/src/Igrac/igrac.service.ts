@@ -15,4 +15,7 @@ export class IgracService {
   async getIgracByTim(timID: string) {
     return this.igracRepository.getIgracByTim(timID);
   }
+  async deleteIgracById(timID: string) {
+    return this.igracRepository.deleteIgracById(timID);
+  }
 }

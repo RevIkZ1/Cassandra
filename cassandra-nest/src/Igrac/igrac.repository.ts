@@ -82,4 +82,13 @@ export class IgracRepository implements OnModuleInit {
 
     return null;
   }
+  async deleteIgracById(playerId: string): Promise<Igrac | null> {
+    const params = [types.Uuid.fromString(playerId)];
+    const query = 'DELETE FROM Igrac WHERE "IgracID" = ?;';
+
+    const result = await this.cassandraService.execute(query, params, {
+      prepare: true,
+    });
+    return null;
+  }
 }
