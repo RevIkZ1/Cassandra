@@ -1,72 +1,75 @@
-<form (submit)="addIgrac()" [formGroup]="form">
-  <label for="ime" class="fs-20">Ime:</label>
-  <textarea
-    type="text"
-    id="ime"
-    name="ime"
-    formControlName="ime"
-    required
-  ></textarea>
+<ng-container *ngIf="authenticated">
+  <form (submit)="addIgrac()" [formGroup]="form">
+    <label for="ime" class="fs-20">Ime:</label>
+    <textarea
+      type="text"
+      id="ime"
+      name="ime"
+      formControlName="ime"
+      required
+    ></textarea>
 
-  <label for="prezime" class="fs-20">Prezime:</label>
-  <textarea
-    type="text"
-    id="prezime"
-    name="prezime"
-    formControlName="prezime"
-    required
-  ></textarea>
+    <label for="prezime" class="fs-20">Prezime:</label>
+    <textarea
+      type="text"
+      id="prezime"
+      name="prezime"
+      formControlName="prezime"
+      required
+    ></textarea>
 
-  <label for="datumrodjenja" class="fs-20">Datum rodjenja:</label>
-  <input
-    type="date"
-    id="datumrodjenja"
-    name="datumrodjenja"
-    formControlName="datumrodjenja"
-    required
-  />
+    <label for="datumrodjenja" class="fs-20">Datum rodjenja:</label>
+    <input
+      type="date"
+      id="datumrodjenja"
+      name="datumrodjenja"
+      formControlName="datumrodjenja"
+      required
+    />
 
-  <label for="pozicija" class="fs-20">Pozicija:</label>
-  <textarea
-    type="text"
-    id="pozicija"
-    name="pozicija"
-    formControlName="pozicija"
-    required
-  ></textarea>
+    <label for="pozicija" class="fs-20">Pozicija:</label>
+    <textarea
+      type="text"
+      id="pozicija"
+      name="pozicija"
+      formControlName="pozicija"
+      required
+    ></textarea>
 
-  <button type="submit">Dodaj igraca</button>
-</form>
-<form (submit)="addStadion()" [formGroup]="form1">
-  <label for="grad" class="fs-20">Grad:</label>
-  <textarea
-    type="text"
-    id="grad"
-    name="grad"
-    formControlName="grad"
-    required
-  ></textarea>
+    <button type="submit">Dodaj igraca</button>
+  </form>
+  <form (submit)="addStadion()" [formGroup]="form1">
+    <label for="grad" class="fs-20">Grad:</label>
+    <textarea
+      type="text"
+      id="grad"
+      name="grad"
+      formControlName="grad"
+      required
+    ></textarea>
 
-  <label for="imestadiona" class="fs-20">Ime stadiona:</label>
-  <textarea
-    type="text"
-    id="imestadiona"
-    name="imestadiona"
-    formControlName="imestadiona"
-    required
-  ></textarea>
+    <label for="imestadiona" class="fs-20">Ime stadiona:</label>
+    <textarea
+      type="text"
+      id="imestadiona"
+      name="imestadiona"
+      formControlName="imestadiona"
+      required
+    ></textarea>
 
-  <label for="kapacitet" class="fs-20">Kapacitet:</label>
-  <input
-    type="number"
-    id="kapacitet"
-    name="kapacitet"
-    formControlName="kapacitet"
-    required
-  />
+    <label for="kapacitet" class="fs-20">Kapacitet:</label>
+    <input
+      type="number"
+      id="kapacitet"
+      name="kapacitet"
+      formControlName="kapacitet"
+      required
+    />
 
-  <button type="submit">Dodaj stadion</button>
-</form>
+    <button type="submit">Dodaj stadion</button>
+  </form>
+</ng-container>
+
 <div class="player-list">
   <div class="table-header">
     <div class="title-block">Ime</div>
@@ -91,7 +94,9 @@
       <div class="info-block">{{ igraci.asistencije }}</div>
       <div class="info-block">{{ igraci.crvenikartoni }}</div>
       <div class="info-block">{{ igraci.zutikartoni }}</div>
-      <button (click)="delete(igraci.IgracID!)">Obrisi igraca</button>
+      <ng-container *ngIf="authenticated">
+        <button (click)="delete(igraci.IgracID!)">Obrisi igraca</button>
+      </ng-container>
     </div>
   </div>
   <div *ngFor="let stadioni of stadioni$ | async" class="anime-item">

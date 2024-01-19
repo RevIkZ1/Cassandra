@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { LigaModel } from '../store/types/liga.module';
 import { Tim } from '../store/types/tim.module';
 import { LigaState } from '../store/types/liga.interface';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import {
   FormBuilder,
@@ -23,6 +23,7 @@ import * as TimActions from '../store/actions/tim.actions';
 import * as UtakmicaActions from '../store/actions/utakmica.actions';
 import { UserModel } from '../store/types/user.module';
 import * as UserActions from '../store/actions/user.actions';
+import { selectUserFeature } from '../store/selectors/user.selector';
 
 @Component({
   selector: 'app-timovi',
@@ -36,6 +37,8 @@ export class TimoviComponent implements OnInit {
   form!: FormGroup;
   matchForm!: FormGroup;
   user: UserModel;
+  isLoggedIn!: boolean;
+  authenticated = true;
   constructor(
     private store: Store<LigaState>,
     private store1: Store<TimState>,
@@ -50,6 +53,10 @@ export class TimoviComponent implements OnInit {
     this.user = new UserModel();
   }
   ngOnInit(): void {
+    this.store.pipe(select(selectUserFeature)).subscribe((userState) => {
+      this.isLoggedIn = userState.isLoggedIn;
+      this.authenticated = userState.isLoggedIn;
+    });
     this.matchForm = this.formBuilder.group({
       domaci: new FormControl('', Validators.required),
       gostujuci: new FormControl('', Validators.required),

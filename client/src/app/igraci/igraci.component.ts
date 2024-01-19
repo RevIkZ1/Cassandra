@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Igrac } from '../store/types/igrac.module';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import {
   igracError,
   igracLoading,
@@ -24,6 +24,7 @@ import { Stadion } from '../store/types/stadion.module';
 import { StadionState } from '../store/types/stadion.interface';
 import { stadioniSelector } from '../store/selectors/stadion.selector';
 import * as StadionActions from '../store/actions/stadion.actions';
+import { selectUserFeature } from '../store/selectors/user.selector';
 
 @Component({
   selector: 'app-igraci',
@@ -37,7 +38,8 @@ export class IgraciComponent implements OnInit {
   stadioni$?: Observable<Stadion[]>;
   form!: FormGroup;
   form1!: FormGroup;
-
+  isLoggedIn!: boolean;
+  authenticated = true;
   constructor(
     private store: Store<IgracState>,
     private store2: Store<StadionState>,
@@ -52,6 +54,10 @@ export class IgraciComponent implements OnInit {
     this.stadioni$ = this.store.select(stadioniSelector);
   }
   ngOnInit(): void {
+    this.store.pipe(select(selectUserFeature)).subscribe((userState) => {
+      this.isLoggedIn = userState.isLoggedIn;
+      this.authenticated = userState.isLoggedIn;
+    });
     this.form = this.formBuilder.group({
       ime: new FormControl('', Validators.required),
       prezime: new FormControl('', Validators.required),

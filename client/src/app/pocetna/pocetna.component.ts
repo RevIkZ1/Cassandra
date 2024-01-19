@@ -17,6 +17,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { selectUserFeature } from '../store/selectors/user.selector';
 
 @Component({
   selector: 'app-pocetna',
@@ -28,7 +29,8 @@ export class PocetnaComponent implements OnInit {
   error$?: Observable<string | null>;
   lige$?: Observable<LigaModel[]>;
   form!: FormGroup;
-
+  isLoggedIn!: boolean;
+  authenticated = true;
   constructor(
     private store: Store<LigaState>,
     private ligaService: LigaService,
@@ -42,6 +44,10 @@ export class PocetnaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.pipe(select(selectUserFeature)).subscribe((userState) => {
+      this.isLoggedIn = userState.isLoggedIn;
+      this.authenticated = userState.isLoggedIn;
+    });
     this.form = this.formBuilder.group({
       drzava: new FormControl('', Validators.required),
       godinaosnivanja: new FormControl('', Validators.required),

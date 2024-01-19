@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Igrac } from '../store/types/igrac.module';
 import { IgracState } from '../store/types/igrac.interface';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import * as IgracActions from '../store/actions/igrac.actions';
@@ -13,6 +13,7 @@ import {
   igracLoading,
   igraciSelector,
 } from '../store/selectors/igrac.selector';
+import { selectUserFeature } from '../store/selectors/user.selector';
 
 @Component({
   selector: 'app-utakmica',
@@ -28,7 +29,8 @@ export class UtakmicaComponent implements OnInit {
     domaci: [''],
     gostujuci: [''],
   });
-
+  isLoggedIn!: boolean;
+  authenticated = true;
   isShowingGosti = false;
 
   constructor(
@@ -43,6 +45,10 @@ export class UtakmicaComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadDomacinInfo();
+    this.store.pipe(select(selectUserFeature)).subscribe((userState) => {
+      this.isLoggedIn = userState.isLoggedIn;
+      this.authenticated = userState.isLoggedIn;
+    });
   }
 
   loadGostInfo() {
