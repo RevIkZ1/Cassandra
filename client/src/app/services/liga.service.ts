@@ -29,7 +29,6 @@ export class LigaService {
       godinaosnivanja: liga.godinaosnivanja,
       imelige: liga.imelige,
     };
-    console.log(ligaData);
     return this.http.post<Liga[]>(
       `http://localhost:3000/Liga/DodajLigu`,
       ligaData,

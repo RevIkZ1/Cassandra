@@ -84,7 +84,6 @@ export class UtakmicaService {
       );
   }
   getTimById(id: string): Observable<TimModel[]> {
-    console.log('Pre HTTP zahteva. ID:', id);
     if (id != null) {
       return this.http
         .get<TimModel[]>(`http://localhost:3000/Tim/tim/${id}`, {
@@ -100,7 +99,6 @@ export class UtakmicaService {
     }
   }
   postUtakmica(utakmica: Utakmica): Observable<Utakmica[]> {
-    console.log(utakmica);
     const utakmciaData = {
       UtakmicaID: '',
       DomacinID: utakmica.DomacinID,
@@ -148,8 +146,6 @@ export class UtakmicaService {
       AsistencijaDomacin,
       AsistencijaGost,
     };
-
-    console.log(data, 'BUGARIN');
 
     return this.http.put<Utakmica[]>(
       `http://localhost:3000/Utakmica/IzmeniUtakmicu`,

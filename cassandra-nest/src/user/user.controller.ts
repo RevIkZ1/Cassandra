@@ -84,19 +84,38 @@ export class UserController {
   }
   @Get('getUserByUsername/:username')
   async getUserByUsername(@Param('username') username: string) {
-    return this.userService.getUserByUser(username);
+    try {
+      const user = await this.userService.getUserByUser(username);
+      return user;
+    } catch (error) {
+      console.error(`Error fetching user by username ${username}:`, error);
+      throw new Error('Failed to fetch user by username');
+    }
   }
+
   @Put('addTeamToUser/:userId/:teamId')
   async addAnimeToUser(
     @Param('userId') userId: string,
     @Param('teamId') teamId: string,
   ): Promise<User> {
-    return this.userService.addTeamToUser(userId, teamId);
+    try {
+      const updatedUser = await this.userService.addTeamToUser(userId, teamId);
+      return updatedUser;
+    } catch (error) {
+      console.error(`Error adding team ${teamId} to user ${userId}:`, error);
+      throw new Error('Failed to add team to user');
+    }
   }
+
   @Get('VratiSveTimove/:id')
   async getEmployeeById(@Param('id') id: string) {
-    const timoviZaLigu = await this.userService.VratiSveTimove(id);
-    console.log(timoviZaLigu);
-    return timoviZaLigu;
+    try {
+      const timoviZaLigu = await this.userService.VratiSveTimove(id);
+      console.log(timoviZaLigu);
+      return timoviZaLigu;
+    } catch (error) {
+      console.error(`Error fetching teams for user ID ${id}:`, error);
+      throw new Error('Failed to fetch teams for user');
+    }
   }
 }

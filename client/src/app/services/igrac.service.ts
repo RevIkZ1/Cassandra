@@ -12,20 +12,17 @@ export class IgracService {
   constructor(private http: HttpClient, private router: Router) {}
 
   getIgraciByTim(id: number): Observable<IgracModel[]> {
-    console.log(id);
     return this.http
       .get<IgracModel[]>(`http://localhost:3000/Igrac/VratiIgrace/${id}`, {
         withCredentials: true,
       })
       .pipe(
         tap((rezultati: IgracModel[]) => {
-          console.log('Rezultati from getAllLige:', rezultati);
+          console.log('Rezultati from getIgracByTim:', rezultati);
         })
       );
   }
   postTim(tim: IgracModel, id: string): Observable<Igrac[]> {
-    console.log(id);
-
     const doktorData = {
       IgracID: '',
       TimID: id,
@@ -39,7 +36,6 @@ export class IgracService {
       prezime: tim.prezime,
       zutikartoni: tim.zutikartoni,
     };
-    console.log(doktorData);
     return this.http.post<Igrac[]>(
       `http://localhost:3000/Igrac/DodajIgrace`,
       doktorData,
@@ -49,7 +45,6 @@ export class IgracService {
     );
   }
   deleteIgrac(id: string) {
-    console.log(id);
     return this.http.delete<string>(
       `http://localhost:3000/Igrac/deleteIgracById/${id}`,
       {

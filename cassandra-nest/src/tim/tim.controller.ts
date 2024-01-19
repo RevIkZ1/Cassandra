@@ -8,22 +8,47 @@ export class TimController {
 
   @Post('DodajTim')
   async createTim(@Body() tim: Tim) {
-    return this.timService.createTim(tim);
+    try {
+      const createdTim = await this.timService.createTim(tim);
+      return createdTim;
+    } catch (error) {
+      console.error('Error creating Tim:', error);
+      throw new Error('Failed to create Tim');
+    }
   }
+
   @Get('VratiTim')
   async getTim() {
-    return this.timService.getTim();
+    try {
+      const timovi = await this.timService.getTim();
+      return timovi;
+    } catch (error) {
+      console.error('Error fetching Timovi:', error);
+      throw new Error('Failed to fetch Timovi');
+    }
   }
+
   @Get('employees/:id')
   async getEmployeeById(@Param('id') id: string) {
-    const timoviZaLigu = await this.timService.getTimByLigaID(id);
-    console.log(timoviZaLigu);
-    return timoviZaLigu;
+    try {
+      const timoviZaLigu = await this.timService.getTimByLigaID(id);
+      console.log(timoviZaLigu);
+      return timoviZaLigu;
+    } catch (error) {
+      console.error(`Error fetching Timovi for Liga ID ${id}:`, error);
+      throw new Error('Failed to fetch Timovi for Liga');
+    }
   }
+
   @Get('tim/:timID')
   async getTimById(@Param('timID') timID: string) {
-    const timoviZaLigu = await this.timService.getTimById(timID);
-    console.log(timoviZaLigu);
-    return timoviZaLigu;
+    try {
+      const timoviZaLigu = await this.timService.getTimById(timID);
+      console.log(timoviZaLigu);
+      return timoviZaLigu;
+    } catch (error) {
+      console.error(`Error fetching Tim with ID ${timID}:`, error);
+      throw new Error('Failed to fetch Tim');
+    }
   }
 }

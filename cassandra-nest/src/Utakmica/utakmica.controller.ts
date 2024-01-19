@@ -9,12 +9,27 @@ export class UtakmicaController {
 
   @Post('DodajUtakmica')
   async createTim(@Body() utakmica: Utakmica) {
-    return this.utakmicaService.createUtakmcia(utakmica);
+    try {
+      const createdUtakmica =
+        await this.utakmicaService.createUtakmcia(utakmica);
+      return createdUtakmica;
+    } catch (error) {
+      console.error('Error creating Utakmica:', error);
+      throw new Error('Failed to create Utakmica');
+    }
   }
+
   @Get('VratiUtakmice')
   async getTim() {
-    return this.utakmicaService.getUtakmica();
+    try {
+      const utakmice = await this.utakmicaService.getUtakmica();
+      return utakmice;
+    } catch (error) {
+      console.error('Error fetching Utakmice:', error);
+      throw new Error('Failed to fetch Utakmice');
+    }
   }
+
   @Put('IzmeniUtakmicu')
   async IzmeniUtakmicu(
     @Body('id') id: string,
@@ -27,16 +42,22 @@ export class UtakmicaController {
     @Body('AsistencijaDomacin') AsistencijaDomacin: string,
     @Body('AsistencijaGost') AsistencijaGost: string,
   ) {
-    return this.utakmicaService.updateUtakmica(
-      id,
-      DomacinGo,
-      GostGo,
-      DomacinCrveni,
-      GostCrveni,
-      DomacinZuti,
-      GostZuti,
-      AsistencijaDomacin,
-      AsistencijaGost,
-    );
+    try {
+      const updatedUtakmica = await this.utakmicaService.updateUtakmica(
+        id,
+        DomacinGo,
+        GostGo,
+        DomacinCrveni,
+        GostCrveni,
+        DomacinZuti,
+        GostZuti,
+        AsistencijaDomacin,
+        AsistencijaGost,
+      );
+      return updatedUtakmica;
+    } catch (error) {
+      console.error(`Error updating Utakmica with ID ${id}:`, error);
+      throw new Error('Failed to update Utakmica');
+    }
   }
 }

@@ -12,20 +12,17 @@ export class StadionService {
   constructor(private http: HttpClient, private router: Router) {}
 
   getStadionByTim(id: number): Observable<StadionModel[]> {
-    console.log(id);
     return this.http
       .get<StadionModel[]>(`http://localhost:3000/Stadion/VratiStadion/${id}`, {
         withCredentials: true,
       })
       .pipe(
         tap((rezultati: StadionModel[]) => {
-          console.log('Rezultati from getAllLige:', rezultati);
+          console.log('Rezultati from getStadionByTim:', rezultati);
         })
       );
   }
   postStadion(stadion: StadionModel, id: string): Observable<Stadion[]> {
-    console.log(id);
-
     const stadionData = {
       StadionID: '',
       TimID: id,
@@ -33,7 +30,6 @@ export class StadionService {
       imestadiona: stadion.imestadiona,
       kapacitet: stadion.kapacitet,
     };
-    console.log(stadionData);
     return this.http.post<Stadion[]>(
       `http://localhost:3000/Stadion/DodajStadion`,
       stadionData,

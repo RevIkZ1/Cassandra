@@ -8,10 +8,23 @@ export class LigaController {
 
   @Post('DodajLigu')
   async createLiga(@Body() liga: Liga) {
-    return this.ligaService.createEmployee(liga);
+    try {
+      const createdLiga = await this.ligaService.createEmployee(liga);
+      return createdLiga;
+    } catch (error) {
+      console.error('Error creating Liga:', error);
+      throw new Error('Failed to create Liga');
+    }
   }
+
   @Get('VratiLige')
   async getLige() {
-    return this.ligaService.getLiga();
+    try {
+      const lige = await this.ligaService.getLiga();
+      return lige;
+    } catch (error) {
+      console.error('Error fetching Lige:', error);
+      throw new Error('Failed to fetch Lige');
+    }
   }
 }

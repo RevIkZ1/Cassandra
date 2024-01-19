@@ -13,8 +13,6 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router) {}
 
   postTim(userId: string, id: string): Observable<User> {
-    console.log(id);
-    console.log(userId);
     return this.http.put<User>(
       `http://localhost:3000/User/addTeamToUser/${userId}/${id}`,
       {
