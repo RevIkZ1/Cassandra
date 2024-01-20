@@ -83,19 +83,7 @@ WITH
   AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'};
 
 
-CREATE TABLE IF NOT EXISTS "Tabela" (
-  "Tabela" UUID,
-  "TimID" UUID,
-  "LigaID" UUID,
-  Sezona INT,
-  Pozicija INT,
-  Poeni INT,
-  PRIMARY KEY ("Tabela", "TimID", "LigaID"),
-)WITH
-  bloom_filter_fp_chance=0.01
-  AND compaction={ 'class' : 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy' }
-  AND compression={ 'sstable_compression' : 'org.apache.cassandra.io.compress.LZ4Compressor' }
-  AND caching={'keys': 'ALL', 'rows_per_partition': 'NONE'};
+
 
 
 
