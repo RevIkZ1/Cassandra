@@ -14,9 +14,7 @@ export class UtakmicaEffects {
       ofType(UtakmicaActions.getUtakmice),
       mergeMap(() => {
         return this.utakmicaService.getAllUtakmice().pipe(
-          tap((utakmice) => {
-            console.log('API Response - getAllUtakmice', utakmice);
-          }),
+          tap((utakmice) => {}),
           map((utakmice) => UtakmicaActions.getUtakmiceSuccess({ utakmice })),
           catchError((error) =>
             of(UtakmicaActions.getUtakmiceFailure({ error: error.message }))

@@ -60,7 +60,6 @@ export class PocetnaComponent implements OnInit {
     this.route.params.subscribe(async (params) => {
       if (this.form.valid) {
         const info = this.form.value;
-        console.log(info);
         try {
           await this.store.dispatch(
             LigaActions.postLiga({
@@ -82,8 +81,6 @@ export class PocetnaComponent implements OnInit {
     });
   }
   prikazi() {
-    this.lige$?.subscribe((res) => {
-      console.log(res);
-    });
+    this.lige$?.subscribe((res) => {});
   }
 }

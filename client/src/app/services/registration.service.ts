@@ -22,7 +22,6 @@ export class RegistrationService {
       const response = await this.http
         .get(`http://localhost:3000/User/getUserByUsername/${username}`)
         .toPromise();
-      console.log(response);
       return true;
     } catch (error) {
       console.error(error);

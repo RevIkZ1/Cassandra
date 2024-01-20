@@ -24,8 +24,8 @@
   </div>
 </div>
 <ng-container *ngIf="authenticated">
-  <form (submit)="addDoktor()" [formGroup]="form">
-    <label for="trener" class="fs-20">trener:</label>
+  <form (submit)="addTim()" [formGroup]="form">
+    <label for="trener" class="fs-20">Teren:</label>
     <textarea
       type="text"
       id="trener"
@@ -34,7 +34,7 @@
       required
     ></textarea>
 
-    <label for="prezime1" class="fs-20">imetima:</label>
+    <label for="prezime1" class="fs-20">Ime tima:</label>
     <textarea
       type="text"
       id="imetima"

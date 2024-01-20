@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
   isLoggedIn!: boolean;
   user1: UserModel;
   handleNavBar() {
-    console.log(this.logoImg);
     this.toggleMenu = !this.toggleMenu;
   }
 
@@ -58,9 +57,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    console.log(this.user1);
     this.user = null;
-    console.log(this.user);
 
     this.store.dispatch(UserActions.logOutUser());
   }

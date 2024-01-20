@@ -16,11 +16,7 @@ export class IgracService {
       .get<IgracModel[]>(`http://localhost:3000/Igrac/VratiIgrace/${id}`, {
         withCredentials: true,
       })
-      .pipe(
-        tap((rezultati: IgracModel[]) => {
-          console.log('Rezultati from getIgracByTim:', rezultati);
-        })
-      );
+      .pipe(tap((rezultati: IgracModel[]) => {}));
   }
   postTim(tim: IgracModel, id: string): Observable<Igrac[]> {
     const doktorData = {

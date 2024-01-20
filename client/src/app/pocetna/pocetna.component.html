@@ -1,6 +1,6 @@
 <ng-container *ngIf="authenticated">
   <form (submit)="addLiga()" [formGroup]="form">
-    <label for="drzava" class="fs-20">drzava:</label>
+    <label for="drzava" class="fs-20">Drzava:</label>
     <textarea
       type="text"
       id="drzava"
@@ -9,7 +9,7 @@
       required
     ></textarea>
 
-    <label for="godinaosnivanja" class="fs-20">godinaosnivanja:</label>
+    <label for="godinaosnivanja" class="fs-20">Godina osnivanja:</label>
     <input
       type="number"
       id="godinaosnivanja"
@@ -18,7 +18,7 @@
       required
     />
 
-    <label for="imelige" class="fs-20">imelige:</label>
+    <label for="imelige" class="fs-20">Ime lige:</label>
     <textarea
       type="text"
       id="imelige"

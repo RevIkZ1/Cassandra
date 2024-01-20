@@ -16,11 +16,7 @@ export class StadionService {
       .get<StadionModel[]>(`http://localhost:3000/Stadion/VratiStadion/${id}`, {
         withCredentials: true,
       })
-      .pipe(
-        tap((rezultati: StadionModel[]) => {
-          console.log('Rezultati from getStadionByTim:', rezultati);
-        })
-      );
+      .pipe(tap((rezultati: StadionModel[]) => {}));
   }
   postStadion(stadion: StadionModel, id: string): Observable<Stadion[]> {
     const stadionData = {

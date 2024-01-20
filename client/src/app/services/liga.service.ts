@@ -16,11 +16,7 @@ export class LigaService {
       .get<LigaModel[]>('http://localhost:3000/Liga/VratiLige', {
         withCredentials: true,
       })
-      .pipe(
-        tap((rezultati: LigaModel[]) => {
-          console.log('Rezultati from getAllLige:', rezultati);
-        })
-      );
+      .pipe(tap((rezultati: LigaModel[]) => {}));
   }
   postliga(liga: LigaModel): Observable<Liga[]> {
     const ligaData = {

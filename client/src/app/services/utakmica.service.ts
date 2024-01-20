@@ -39,7 +39,7 @@ export class UtakmicaService {
               filter((utakmica) => utakmica.DomacinID !== undefined),
               concatMap((utakmica) =>
                 this.getTimById(utakmica.DomacinID!).pipe(
-                  tap(() => console.log('DomacinID:', utakmica.DomacinID)),
+                  tap(() => console.log()),
                   map((domacin: TimModel[]) => ({
                     ...utakmica,
                     Domacin: domacin[0],
@@ -78,9 +78,7 @@ export class UtakmicaService {
             )
             .pipe(toArray());
         }),
-        tap((utakmiceWithTeams: UtakmicaModel[]) => {
-          console.log('Utakmice with Teams:', utakmiceWithTeams);
-        })
+        tap((utakmiceWithTeams: UtakmicaModel[]) => {})
       );
   }
   getTimById(id: string): Observable<TimModel[]> {
@@ -89,11 +87,7 @@ export class UtakmicaService {
         .get<TimModel[]>(`http://localhost:3000/Tim/tim/${id}`, {
           withCredentials: true,
         })
-        .pipe(
-          tap((rezultati: TimModel[]) => {
-            console.log('Posle HTTP zahteva. Rezultati:', rezultati);
-          })
-        );
+        .pipe(tap((rezultati: TimModel[]) => {}));
     } else {
       return of([]);
     }

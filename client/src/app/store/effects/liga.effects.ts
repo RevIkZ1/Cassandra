@@ -13,9 +13,7 @@ export class LigaEffects {
       ofType(LigaActions.getLige),
       mergeMap(() => {
         return this.ligaService.getAllLige().pipe(
-          tap((mesta) => {
-            console.log('API Response - getAllLige', mesta);
-          }),
+          tap((mesta) => {}),
           map((mesta) => LigaActions.getLigeSuccess({ mesta })),
           catchError((error) =>
             of(LigaActions.getLigeFailure({ error: error.message }))

@@ -87,7 +87,6 @@ export class IgraciComponent implements OnInit {
     this.route.params.subscribe(async (params) => {
       if (this.form.valid) {
         const info = this.form.value;
-        console.log(info);
         const id = params['id']; // Assuming you get the ID from route params
         try {
           await this.store.dispatch(
@@ -121,7 +120,6 @@ export class IgraciComponent implements OnInit {
     this.route.params.subscribe(async (params) => {
       if (this.form1.valid) {
         const info = this.form1.value;
-        console.log(info);
         const id = params['id']; // Assuming you get the ID from route params
         try {
           await this.store.dispatch(

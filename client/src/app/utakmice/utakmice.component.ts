@@ -85,9 +85,7 @@ export class UtakmiceComponent implements OnInit {
       });
   }
   prikazi() {
-    this.utakmice$?.subscribe((res) => {
-      console.log(res);
-    });
+    this.utakmice$?.subscribe((res) => {});
   }
   async getDomacin(id: string) {
     try {

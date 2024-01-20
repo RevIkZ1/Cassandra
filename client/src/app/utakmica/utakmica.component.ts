@@ -73,12 +73,10 @@ export class UtakmicaComponent implements OnInit {
 
   logSelectedPlayerId() {
     const selectedPlayerId = this.utakmicaForm.get('domaci')?.value;
-    console.log('Selected Player ID:', selectedPlayerId);
   }
 
   setSelectedPlayerId(paramName: string) {
     const selectedPlayerId = this.utakmicaForm.get('domaci')?.value;
-    console.log('Selected Player ID:', selectedPlayerId);
     this.route.params.subscribe(async (params) => {
       let id = params['id'];
       this.store.dispatch(IgracActions.getIgrac({ id }));
@@ -95,7 +93,6 @@ export class UtakmicaComponent implements OnInit {
         AsistencijaDomacin: '',
         AsistencijaGost: '',
       };
-      console.log(actionPayload);
       actionPayload[paramName] = selectedPlayerId;
 
       this.store.dispatch(UtakmicaActions.putUtakmica(actionPayload));

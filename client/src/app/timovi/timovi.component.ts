@@ -81,16 +81,12 @@ export class TimoviComponent implements OnInit {
       );
     }
   }
-  selectTeamForMatch(selectedTeamId: string | undefined) {
-    console.log('Selected Team ID for Match:', selectedTeamId);
-  }
-  addDoktor() {
+  selectTeamForMatch(selectedTeamId: string | undefined) {}
+  addTim() {
     this.route.params.subscribe(async (params) => {
       if (this.form.valid) {
         const info = this.form.value;
         const id = params['id']; // Assuming you get the ID from route params
-
-        console.log('Doktor Info:', info);
 
         try {
           await this.store.dispatch(
@@ -114,15 +110,12 @@ export class TimoviComponent implements OnInit {
     });
   }
   prikazi() {
-    this.tim$?.subscribe((res) => {
-      console.log(res);
-    });
+    this.tim$?.subscribe((res) => {});
   }
   async addMatch() {
     if (this.matchForm.valid) {
       const matchInfo = this.matchForm.value;
 
-      console.log('Match Info:', matchInfo);
       try {
         await this.store.dispatch(
           UtakmicaActions.postUtakmica({
@@ -156,11 +149,8 @@ export class TimoviComponent implements OnInit {
     }
   }
   dodajKodUsera(id: string | undefined) {
-    console.log(this.user.id);
     if (this.user.id !== undefined) {
       const existingTeams = this.user.listatimova || [];
-      console.log(id, 'GHAAAAAAAAAAAAAAAAAAAAAAA');
-      console.log(this.user.id, 'GAAAAAAAAAAAAAAAAAAAAAAAA');
 
       if (existingTeams.includes(id as string)) {
         window.alert('Tim već dodat!');

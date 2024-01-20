@@ -54,14 +54,12 @@ export class ProfileComponent implements OnInit {
         userObject.password,
         userObject.listatimova
       );
-      console.log(this.user);
       this.route.params.subscribe(async (params) => {
         if (this.user?.id !== undefined) {
           this.store.dispatch(
             TimActions.getTimByUser({ id: this.user.id.toString() })
           );
         }
-        console.log(this.store);
       });
     }
   }

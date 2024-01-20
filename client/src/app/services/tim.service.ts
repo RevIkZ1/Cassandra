@@ -16,11 +16,7 @@ export class TimService {
       .get<TimModel[]>(`http://localhost:3000/Tim/employees/${id}`, {
         withCredentials: true,
       })
-      .pipe(
-        tap((rezultati: TimModel[]) => {
-          console.log('Rezultati from getTimByLiga:', rezultati);
-        })
-      );
+      .pipe(tap((rezultati: TimModel[]) => {}));
   }
   postTim(tim: TimModel, id: string): Observable<Tim[]> {
     const doktorData = {
@@ -50,10 +46,6 @@ export class TimService {
       .get<TimModel[]>(`http://localhost:3000/User/VratiSveTimove/${id}`, {
         withCredentials: true,
       })
-      .pipe(
-        tap((rezultati: TimModel[]) => {
-          console.log('Rezultati from getTimByUser:', rezultati);
-        })
-      );
+      .pipe(tap((rezultati: TimModel[]) => {}));
   }
 }
