@@ -1,7 +1,7 @@
-<p>utakmica works!</p>
-
 <form [formGroup]="utakmicaForm">
-  <label for="domaci" class="fs-20">Domaći tim:</label>
+  <label for="domaci" class="fs-20"
+    >{{ isShowingGosti ? "Gosti" : "Domaci" }} tim:</label
+  >
   <select
     id="domaci"
     name="domaci"
